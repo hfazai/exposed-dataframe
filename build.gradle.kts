@@ -48,4 +48,6 @@ dependencies {
     testImplementation("org.jetbrains.kotlin:kotlin-test")
     // Use the Kotlin JUnit integration.
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
+    // H2 Driver for testing
+    testImplementation("com.h2database:h2:2.1.212")
 }
