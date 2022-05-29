@@ -57,7 +57,7 @@ class ExposedDataframeTests {
 
         assertEquals(Users.columns.size, columns.size)
         columns.forEachIndexed { index, column ->
-            assertEquals(Users.columns[index].nameInDatabaseCase(), column.name())
+            assertEquals(Users.columns[index].name, column.name())
         }
     }
 }

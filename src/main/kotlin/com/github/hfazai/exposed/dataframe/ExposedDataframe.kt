@@ -17,7 +17,8 @@ package com.github.hfazai.exposed.dataframe
 
 import org.jetbrains.exposed.sql.Table
 import org.jetbrains.kotlinx.dataframe.Column
+import org.jetbrains.kotlinx.dataframe.api.column
 
-fun Table.columns() : List<Column> {
-    TODO()
-}
+fun Table.columns() : List<Column> = columns.map { column -> column.getDfColumn() }
+
+private fun <T> org.jetbrains.exposed.sql.Column<T>.getDfColumn(): Column = column<T>(name)
