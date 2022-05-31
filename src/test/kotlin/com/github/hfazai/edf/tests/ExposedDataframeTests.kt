@@ -1,5 +1,5 @@
 /*
- * Copyright 2021-2022 Hichem Fazai (https://github.com/hfazai).
+ * Copyright 2022-2022 Hichem Fazai (https://github.com/hfazai).
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -13,11 +13,11 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.github.hfazai.exposed.dataframe.tests
+package com.github.hfazai.edf.tests
 
 import kotlin.test.assertEquals
 
-import com.github.hfazai.exposed.dataframe.columns
+import com.github.hfazai.edf.columns
 
 import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.transactions.transaction
