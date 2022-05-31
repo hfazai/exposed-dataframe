@@ -34,7 +34,7 @@ fun Users.insertData() {
 
 fun connectToDB() {
     Database.connect(
-        url = "jdbc:h2:mem:test",
+        url = "jdbc:h2:mem:test;DB_CLOSE_DELAY=-1",
         driver = "org.h2.Driver",
         databaseConfig = DatabaseConfig.invoke {
             sqlLogger = StdOutSqlLogger

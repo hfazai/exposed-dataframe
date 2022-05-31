@@ -18,8 +18,10 @@ package com.github.hfazai.edf.tests
 import kotlin.test.assertEquals
 
 import com.github.hfazai.edf.columns
+import com.github.hfazai.edf.dataframe
 
 import org.jetbrains.exposed.sql.SchemaUtils
+import org.jetbrains.exposed.sql.selectAll
 import org.jetbrains.exposed.sql.transactions.transaction
 import org.junit.After
 import org.junit.Before
@@ -58,6 +60,24 @@ class ExposedDataframeTests {
         assertEquals(Users.columns.size, columns.size)
         columns.forEachIndexed { index, column ->
             assertEquals(Users.columns[index].name, column.name())
+        }
+    }
+
+    @Test
+    fun `build dataframe from exposed table`() {
+        transaction {
+            val columns = Users.columns()
+            val df = Users.dataframe()
+            val tableColumns = Users.columns
+            val data = Users.selectAll().map { it }
+
+            println(df[1][columns[1]])
+
+            data.forEachIndexed { index, resultRow ->
+                tableColumns.forEachIndexed { colIndex, column ->
+                    assertEquals(resultRow[column], df[index][colIndex])
+                }
+            }
         }
     }
 }

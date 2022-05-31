@@ -16,9 +16,24 @@
 package com.github.hfazai.edf
 
 import org.jetbrains.exposed.sql.Table
+import org.jetbrains.exposed.sql.selectAll
+import org.jetbrains.kotlinx.dataframe.AnyFrame
 import org.jetbrains.kotlinx.dataframe.Column
 import org.jetbrains.kotlinx.dataframe.api.column
+import org.jetbrains.kotlinx.dataframe.api.dataFrameOf
 
 fun Table.columns() : List<Column> = columns.map { column -> column.getDfColumn() }
+
+fun Table.dataframe() : AnyFrame {
+    val tableColumns = columns()
+
+    val data = selectAll().mapIndexed { index, resultRow ->
+        columns.map { resultRow[it] }
+    }
+
+    return dataFrameOf(*tableColumns.toTypedArray()) (
+        *data.flatten().toTypedArray()
+    )
+}
 
 private fun <T> org.jetbrains.exposed.sql.Column<T>.getDfColumn(): Column = column<T>(name)
