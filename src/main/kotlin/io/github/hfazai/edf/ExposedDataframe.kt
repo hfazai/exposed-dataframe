@@ -13,7 +13,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.github.hfazai.edf
+package io.github.hfazai.edf
 
 import org.jetbrains.exposed.sql.Table
 import org.jetbrains.exposed.sql.selectAll

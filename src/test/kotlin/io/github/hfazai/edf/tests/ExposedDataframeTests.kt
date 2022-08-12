@@ -13,12 +13,12 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.github.hfazai.edf.tests
+package io.github.hfazai.edf.tests
 
 import kotlin.test.assertEquals
 
-import com.github.hfazai.edf.columns
-import com.github.hfazai.edf.dataframe
+import io.github.hfazai.edf.columns
+import io.github.hfazai.edf.dataframe
 
 import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.selectAll
@@ -66,12 +66,9 @@ class ExposedDataframeTests {
     @Test
     fun `build dataframe from exposed table`() {
         transaction {
-            val columns = Users.columns()
             val df = Users.dataframe()
             val tableColumns = Users.columns
             val data = Users.selectAll().map { it }
-
-            println(df[1][columns[1]])
 
             data.forEachIndexed { index, resultRow ->
                 tableColumns.forEachIndexed { colIndex, column ->
